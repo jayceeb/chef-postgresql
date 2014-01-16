@@ -68,6 +68,7 @@ if node['postgresql']['version'].to_f < 9.2 && node['postgresql']['config'].attr
   link ::File.join(node['postgresql']['config']['data_directory'], 'server.key') do
     to node['postgresql']['config']['ssl_key_file']
   end
+end
 
 change_notify = node['postgresql']['server']['config_change_notify']
 
