@@ -75,9 +75,10 @@ if node['postgresql']['version'].to_f < 9.2 && node['postgresql']['config'].attr
   link ::File.join(node['postgresql']['config']['data_directory'], 'server.key') do
     to node['postgresql']['config']['ssl_key_file']
   end
+# foodcritic doesn't understand this for some reason
 change_notify = node['postgresql']['server']['config_change_notify']
 
-template "#{node['postgresql']['dir']}/postgresql.conf" do
+template "#{node['postgresql']['dir']}/postgresql.conf" do # ~FC037
   source "postgresql.conf.erb"
   owner "postgres"
   group "postgres"
@@ -85,7 +86,7 @@ template "#{node['postgresql']['dir']}/postgresql.conf" do
   notifies change_notify, 'service[postgresql]', :delayed
 end
 
-template "#{node['postgresql']['dir']}/pg_hba.conf" do
+template "#{node['postgresql']['dir']}/pg_hba.conf" do # ~FC037
   source "pg_hba.conf.erb"
   owner "postgres"
   group "postgres"
