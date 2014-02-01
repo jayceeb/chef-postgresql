@@ -19,7 +19,7 @@
 #
 
 if node['postgresql']['version'].to_f < 9.3
-  Chef::Log.fatal!("Streaming replication requires postgresql 9.3 or greater and
+  Chef::Log.fatal("Streaming replication requires postgresql 9.3 or greater and
     you have configured #{node['postgresql']['version']}.  Bail.")
 end
 
@@ -32,11 +32,10 @@ node.default['postgresql']['pg_hba'] +=
 
 include_recipe 'postgresql::server'
 
-if node['postgresql']['archive_path']
-  directory node['postgresql']['archive_path'] do
-    owner "postgres"
-    group "postgres"
-    mode 00755
-    action :create
-  end
+directory node['postgresql']['shared_archive'] do
+  owner "postgres"
+  group "postgres"
+  mode 00755
+  action :create
+  only_if { node['postgresql']['shared_archive'] }
 end
