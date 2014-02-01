@@ -1,4 +1,4 @@
-if not %w(jessie squeeze wheezy sid lucid precise saucy trusty utopic).include? node['postgresql']['pgdg']['release_apt_codename']
+if not %w(jessie squeeze wheezy sid lucid precise saucy trusty utopic).include? node['lsb']['codename'] 
   raise "Not supported release by PGDG apt repository"
 end
 
@@ -11,7 +11,7 @@ end
 
 apt_repository 'apt.postgresql.org' do
   uri 'http://apt.postgresql.org/pub/repos/apt'
-  distribution "#{node['postgresql']['pgdg']['release_apt_codename']}-pgdg"
+  distribution "#{node['lsb']['codename']}-pgdg"
   components ['main', node['postgresql']['version']]
   key 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
   action :add
