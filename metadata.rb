@@ -13,6 +13,7 @@ recipe            "postgresql::server_streaming_slave", "Install s postgresql st
 recipe            "postgresql::server", "Installs postgresql server packages, templates"
 recipe            "postgresql::server_redhat", "Installs postgresql server packages, redhat family style"
 recipe            "postgresql::server_debian", "Installs postgresql server packages, debian family style"
+recipe            "postgresql::wal-e", "Installs wal-e S3 backup process for postgres"
 
 
 supports "ubuntu", "< 14.10"
