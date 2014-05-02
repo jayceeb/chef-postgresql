@@ -29,4 +29,5 @@ end
 depends "apt", ">= 1.9.0"
 depends "build-essential"
 depends "openssl", "~> 4.0.0"
+depends "logrotate"
 depends "python"
