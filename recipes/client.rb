@@ -15,7 +15,9 @@
 # limitations under the License.
 #
 
-if platform_family?('debian') && node['postgresql']['version'].to_f > 9.3
+include_recipe "postgresql::set_attr"
+
+if platform_family?('debian', 'ubuntu') && node['postgresql']['version'].to_f > 9.3
   node.default['postgresql']['enable_pgdg_apt'] = true
 end
 
