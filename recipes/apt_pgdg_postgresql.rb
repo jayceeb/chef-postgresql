@@ -3,6 +3,7 @@ if not %w(jessie squeeze wheezy sid lucid precise saucy trusty utopic).include? 
 end
 
 include_recipe 'apt'
+include_recipe "postgresql::set_attr"
 
 file "remove deprecated Pitti PPA apt repository" do
   action :delete

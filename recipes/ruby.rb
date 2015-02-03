@@ -15,6 +15,8 @@
 # limitations under the License.
 #
 
+include_recipe "postgresql::set_attr"
+
 # Load the pgdgrepo_rpm_info method from libraries/default.rb
 ::Chef::Recipe.send(:include, Opscode::PostgresqlHelpers)
 

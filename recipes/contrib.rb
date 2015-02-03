@@ -16,6 +16,8 @@
 #
 
 db_name = node['postgresql']['database_name']
+include_recipe "postgresql::set_attr"
+include_recipe "postgresql::server"
 
 # Install the PostgreSQL contrib package(s) from the distribution,
 # as specified by the node attributes.
